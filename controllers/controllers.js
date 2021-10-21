@@ -2,7 +2,8 @@ const {
   createProduct,
   productExists,
   getAllProducts,
-  getProductsById } = require('../models/productModels');
+  getProductsById, 
+  editById } = require('../models/productModels');
 
 const postProduct = async (req, res) => {
   const { name, quantity } = req.body;
@@ -45,4 +46,21 @@ const productById = async (req, res) => {
   return res.status(200).json(products);
 };
 
-module.exports = { postProduct, allProducts, productById };
+const editProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name, quantity } = req.body;
+  await editById(id, name, quantity);
+
+  return res.status(200).json({
+    _id: id,
+    name,
+    quantity,
+  });
+};
+
+module.exports = {
+  postProduct,
+  allProducts,
+  productById,
+  editProduct,
+};

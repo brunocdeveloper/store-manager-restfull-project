@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { postProduct, allProducts, productById } = require('./controllers/controllers');
+const { postProduct, allProducts, productById, editProduct } = require('./controllers/controllers');
 const { validateName, validateQuantity } = require('./controllers/validates');
 
 const app = express();
@@ -18,5 +18,7 @@ app.get('/products', allProducts);
 app.get('/products/:id', productById);
 
 app.post('/products', validateName, validateQuantity, postProduct);
+
+app.put('/products/:id', validateName, validateQuantity, editProduct);
 
 app.listen(PORT, () => console.log(`Aplicação rodando na porta ${PORT}`));
