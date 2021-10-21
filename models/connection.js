@@ -1,9 +1,10 @@
-const MONGO_DB_URL = 'mongodb://localhost:27017/StoreManager';
-const DB_NAME = 'StoreManager';
+// avaliador local
+// const MONGO_DB_URL = 'mongodb://localhost:27017/StoreManager';
 
-// avaliador
-/* const MONGO_DB_URL = 'mongodb://mongodb:27017/StoreManager';
-const DB_NAME = 'StoreManager'; */
+// avaliador git hub
+const MONGO_DB_URL = 'mongodb://mongodb:27017/StoreManager';
+
+const DB_NAME = 'StoreManager';
 
 const { MongoClient } = require('mongodb');
 
