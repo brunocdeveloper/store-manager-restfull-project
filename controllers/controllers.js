@@ -3,7 +3,8 @@ const {
   productExists,
   getAllProducts,
   getProductsById, 
-  editById } = require('../models/productModels');
+  editById, 
+  deleteProduct } = require('../models/productModels');
 
 const postProduct = async (req, res) => {
   const { name, quantity } = req.body;
@@ -58,9 +59,24 @@ const editProduct = async (req, res) => {
   });
 };
 
+const deleteById = async (req, res) => {
+  const { id } = req.params;
+  const product = await deleteProduct(id);
+  if (!product) {
+    return res.status(422).json({
+      err: {
+      code: 'invalid_data',
+      message: 'Wrong id format',
+    },
+  }); 
+}
+  return res.status(200).json(product);
+};
+
 module.exports = {
   postProduct,
   allProducts,
   productById,
   editProduct,
+  deleteById,
 };
