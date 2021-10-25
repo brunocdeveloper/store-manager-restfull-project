@@ -1,4 +1,4 @@
-const { createSales, getAllSales, getSalesById } = require('../models/salesModels');
+const { createSales, getAllSales, getSalesById, editSalesById } = require('../models/salesModels');
 const { validateSaleQuantity } = require('./validateSales');
 
 const createNewSales = async (req, res) => {
@@ -39,4 +39,25 @@ const salesById = async (req, res) => {
 
   return res.status(200).json({ sales });
 };
-module.exports = { createNewSales, allSales, salesById };
+
+const editSale = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  const validate = validateSaleQuantity(body);
+  if (validate) {
+    await editSalesById(id, body);
+    return res.status(200).json({
+      _id: id,
+      itensSold: body,
+    });
+  }
+
+  return res.status(422).json({
+    err: {
+      code: 'invalid_data',
+      message: 'Wrong product ID or invalid quantity',
+    },
+  });
+};
+
+module.exports = { createNewSales, allSales, salesById, editSale };
