@@ -1,4 +1,9 @@
-const { createSales, getAllSales, getSalesById, editSalesById } = require('../models/salesModels');
+const { 
+  createSales,
+  getAllSales,
+  getSalesById,
+  editSalesById,
+  deleteSales } = require('../models/salesModels');
 const { validateSaleQuantity } = require('./validateSales');
 
 const createNewSales = async (req, res) => {
@@ -60,4 +65,21 @@ const editSale = async (req, res) => {
   });
 };
 
-module.exports = { createNewSales, allSales, salesById, editSale };
+const deleteSalesById = async (req, res) => {
+  const { id } = req.params;
+
+  const sales = await deleteSales(id);
+  console.log(sales);
+  if (!sales) {
+    res.status(422).json({
+      err: {
+        code: 'invalid_data',
+        message: 'Wrong sale ID format',
+      },
+    });
+
+    return res.status(200).json(sales);
+  }
+};
+
+module.exports = { createNewSales, allSales, salesById, editSale, deleteSalesById };

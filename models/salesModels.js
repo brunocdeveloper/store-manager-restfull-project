@@ -36,4 +36,14 @@ const editSalesById = async (id, body) => {
   return data;
 };
 
-module.exports = { createSales, getAllSales, getSalesById, editSalesById };
+const deleteSales = async (id) => {
+  if (!ObjectId.isValid(id)) {
+    return null;
+  }
+  const db = await connection();
+  const data = await db.collection('sales').findOne({ _id: ObjectId(id) });
+  await db.collection('sales').deleteOne({ _id: ObjectId(id) });
+  return data;
+};
+
+module.exports = { createSales, getAllSales, getSalesById, editSalesById, deleteSales };
