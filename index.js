@@ -10,8 +10,8 @@ const { validateName, validateQuantity } = require('./controllers/validates');
 const { 
   createNewSales,
   allSales,
-  /* salesById,
-  editSale,
+  salesById,
+  /* editSale,
   deleteSalesById */ } = require('./controllers/salesControllers');
 
 const app = express();
@@ -38,9 +38,9 @@ app.post('/sales', createNewSales);
 
 app.get('/sales', allSales);
 
-/* app.get('/sales/:id', salesById);
+app.get('/sales/:id', salesById);
 
-app.put('/sales/:id', editSale);
+/* app.put('/sales/:id', editSale);
 
 app.delete('/sales/:id', deleteSalesById); */
 
