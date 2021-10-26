@@ -12,7 +12,7 @@ const {
   allSales,
   salesById,
   editSale,
-  /* deleteSalesById */ } = require('./controllers/salesControllers');
+  deleteSalesById } = require('./controllers/salesControllers');
 
 const app = express();
 app.use(bodyParser.json());
@@ -42,6 +42,6 @@ app.get('/sales/:id', salesById);
 
 app.put('/sales/:id', editSale);
 
-/* app.delete('/sales/:id', deleteSalesById); */
+app.delete('/sales/:id', deleteSalesById);
 
 app.listen(PORT, () => console.log(`Aplicação rodando na porta ${PORT}`));

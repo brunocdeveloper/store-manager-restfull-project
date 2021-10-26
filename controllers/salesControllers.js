@@ -67,19 +67,16 @@ const editSale = async (req, res) => {
 
 const deleteSalesById = async (req, res) => {
   const { id } = req.params;
-
-  const sales = await deleteSales(id);
-  console.log(sales);
-  if (!sales) {
-    res.status(422).json({
+  const product = await deleteSales(id);
+  if (!product) {
+    return res.status(422).json({
       err: {
-        code: 'invalid_data',
-        message: 'Wrong sale ID format',
-      },
-    });
-
-    return res.status(200).json(sales);
-  }
+      code: 'invalid_data',
+      message: 'Wrong sale ID format',
+    },
+  }); 
+}
+  return res.status(200).json(product);
 };
 
 module.exports = { createNewSales, allSales, salesById, editSale, deleteSalesById };
