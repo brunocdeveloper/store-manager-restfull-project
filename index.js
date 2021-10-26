@@ -7,12 +7,12 @@ const {
   editProduct,
   deleteById } = require('./controllers/controllers');
 const { validateName, validateQuantity } = require('./controllers/validates');
-const { 
+/* const { 
   createNewSales,
   allSales,
   salesById,
   editSale,
-  deleteSalesById } = require('./controllers/salesControllers');
+  deleteSalesById } = require('./controllers/salesControllers'); */
 
 const app = express();
 app.use(bodyParser.json());
@@ -34,7 +34,7 @@ app.put('/products/:id', validateName, validateQuantity, editProduct);
 
 app.delete('/products/:id', deleteById);
 
-app.post('/sales', createNewSales);
+/* app.post('/sales', createNewSales);
 
 app.get('/sales', allSales);
 
@@ -42,6 +42,6 @@ app.get('/sales/:id', salesById);
 
 app.put('/sales/:id', editSale);
 
-app.delete('/sales/:id', deleteSalesById);
+app.delete('/sales/:id', deleteSalesById); */
 
 app.listen(PORT, () => console.log(`Aplicação rodando na porta ${PORT}`));
