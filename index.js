@@ -9,8 +9,8 @@ const {
 const { validateName, validateQuantity } = require('./controllers/validates');
 const { 
   createNewSales,
-  /* allSales,
-  salesById,
+  allSales,
+  /* salesById,
   editSale,
   deleteSalesById */ } = require('./controllers/salesControllers');
 
@@ -36,9 +36,9 @@ app.delete('/products/:id', deleteById);
 
 app.post('/sales', createNewSales);
 
-/* app.get('/sales', allSales);
+app.get('/sales', allSales);
 
-app.get('/sales/:id', salesById);
+/* app.get('/sales/:id', salesById);
 
 app.put('/sales/:id', editSale);
 
